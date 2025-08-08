@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Change Detection Game</title>
+  <style>
+    body{background:#0f1724;color:white;font-family:sans-serif;text-align:center;margin:0;padding:0;}
+    canvas{background:#111;display:block;margin:20px auto;border:2px solid #555;}
+    button{padding:10px 20px;margin-top:20px;font-size:16px;background:#2563eb;color:white;border:none;border-radius:5px;cursor:pointer;}
+    button:hover{background:#1e40af;}
+  </style>
+</head>
+<body>
+  <h1>Change Detection Game</h1>
+  <p>Memorize the positions of the colored squares. One will change—spot it!</p>
+  <canvas id="gameCanvas" width="400" height="400"></canvas><br/>
+  <button id="startBtn">Start Game</button>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const startBtn = document.getElementById('startBtn');
+
+    let squares = [];
+    let changedIndex = null;
+    let gamePhase = 0; // 0: ready, 1: memorizing, 2: change, 3: guess
+
+    function randomColor() {
+      const colors = ['red','blue','green','yellow','orange','purple','cyan','magenta'];
+      return colors[Math.floor(Math.random()*colors.length)];
+    }
+
+    function generateSquares() {
+      squares = [];
+      for (let i=0; i<4; i++) {
+        for (let j=0; j<4; j++) {
+          squares.push({x:i*100, y:j*100, color:randomColor()});
+        }
+      }
+    }
+
+    function drawSquares() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      squares.forEach(sq => {
+        ctx.fillStyle = sq.color;
+        ctx.fillRect(sq.x, sq.y, 100, 100);
+      });
+    }
+
+    function startGame() {
+      gamePhase = 1;
+      generateSquares();
+      drawSquares();
+      setTimeout(() => {
+        changedIndex = Math.floor(Math.random()*squares.length);
+        squares[changedIndex].color = randomColor();
+        gamePhase = 2;
+        drawSquares();
+        gamePhase = 3;
+      }, 1500);
+    }
+
+    canvas.addEventListener('click', (e) => {
+      if (gamePhase !== 3) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const clickedIndex = Math.floor(x/100) + Math.floor(y/100)*4;
+      if (clickedIndex === changedIndex) {
+        alert('Correct!');
+      } else {
+        alert('Wrong! Try again.');
+      }
+      gamePhase = 0;
+    });
+
+    startBtn.addEventListener('click', startGame);
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cognitive Science Arcade</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:#0f1724;color:#e6eef6;margin:0;padding:0}
+    header{background:#1e293b;padding:16px;text-align:center}
+    header h1{margin:0;font-size:24px}
+    nav{background:#111827;display:flex;justify-content:center;gap:20px;padding:10px}
+    nav a{color:#60a5fa;text-decoration:none;font-weight:600}
+    .container{max-width:1100px;margin:20px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+    .card{background:#1e293b;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.4);display:flex;flex-direction:column}
+    .card iframe{border:none;width:100%;height:320px;background:#000}
+    .card h2{margin:12px;font-size:18px}
+    .card p{margin:0 12px 12px;color:#9aa7b2;font-size:14px}
+    footer{text-align:center;color:#9aa7b2;padding:20px;margin-top:20px;font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 Cognitive Science Arcade</h1>
+    <p>Test your brain with interactive cognitive science games</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <div class="container" id="games">
+    <h2>Games</h2>
+    <div class="grid">
+      <div class="card">
+        <iframe src="change_detection.html"></iframe>
+        <h2>Change Detection</h2>
+        <p>Test your visual working memory by detecting changes in colored arrays.</p>
+      </div>
+      <div class="card">
+        <iframe srcdoc="<h1 style='color:white;text-align:center;padding-top:140px'>Coming Soon</h1>"></iframe>
+        <h2>Stroop Effect</h2>
+        <p>Measure reaction time when naming colors vs reading words.</p>
+      </div>
+      <div class="card">
+        <iframe srcdoc="<h1 style='color:white;text-align:center;padding-top:140px'>Coming Soon</h1>"></iframe>
+        <h2>N-Back Test</h2>
+        <p>Challenge your working memory with sequential matching tasks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="about">
+    <h2>About</h2>
+    <p>This site hosts interactive experiments and games based on cognitive science principles. They are designed for learning, fun, and self-testing — not for clinical or diagnostic use. New games will be added over time.</p>
+  </div>
+
+  <footer>
+    Cognitive Science Arcade © 2025 — All Rights Reserved
+  </footer>
+</body>
+</html>
